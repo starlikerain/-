@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Set;
@@ -8,13 +9,57 @@ import java.util.Set;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        readAsSerialized();
+//        readAsSerialized();
+//        saveAsSerialized();
+//        serializedArray();
+        changeSout();
     }
 
+    /**
+     * 常识一下，改变 sout 的默认输出目的地
+     */
+    public static void changeSout () throws FileNotFoundException {
+        System.out.println("我在控制台输出");
 
-    // 读取存在于文件中的对象，对象的反序列化
+        System.setOut(new PrintStream("/Users/StarLikeRain/Documents/_JavaCodes/1/输出的目的地.rtf"));
+
+        System.out.println("我应该在文件里面输出了");
+    }
+
+    /**
+     * 做一个序列化集合
+     */
+    public static void serializedArray () throws IOException, ClassNotFoundException {
+        ArrayList<Person> p = new ArrayList<>();
+        p.add(new Person(" 名字1", 18));
+        p.add(new Person(" 名字2", 19));
+        p.add(new Person(" 名字3", 2000));
+
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/保存的文件.txt"));
+        objectOutputStream.writeObject(p);
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/保存的文件.txt"));
+
+        Object o = objectInputStream.readObject();
+        ArrayList<Person> people = (ArrayList<Person>)o;
+
+        for (Person person : people) {
+            System.out.println(person.name + person.age);
+        }
+
+        objectInputStream.close();
+        objectOutputStream.close();
+
+
+    }
+
+    /**
+     * 读取文件，反序列化
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void readAsSerialized() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/serilizedIn.txt"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/保存的文件.txt"));
         int len;
 
         Object obj = ois.readObject();
@@ -26,8 +71,13 @@ public class Main {
         System.out.println(P.getName());
     }
 
+
+    /**
+     * 保存文件，序列化
+     * @throws  IOException
+     */
     public static void saveAsSerialized() throws IOException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/serilizedIn.txt"));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/Users/StarLikeRain/Documents/_JavaCodes/1/保存的文件.txt"));
         oos.writeObject(new Person("啊", 12));
         oos.close();
     }

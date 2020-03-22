@@ -3,8 +3,11 @@ package com.company;
 import java.io.Serializable;
 
 public class Person implements Serializable {
+//    private static final long serialVersionUID = 1L;
+//    private static final long  = 1L;
+
     String name;
-    int age;
+    public int age;
 
     public Person(String name, int age) {
         this.name = name;

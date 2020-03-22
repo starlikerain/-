@@ -1,2 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
+out/production/1/com/company/uploadDIYFileName/TCPServerUpload$1.class
+*.class

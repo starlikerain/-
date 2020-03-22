@@ -17,6 +17,8 @@ public class TCPClientUpload {
             outStream.write(bytes, 0, len);
         }
 
+        socket.shutdownOutput();
+
         // 获取服务器的返回
         InputStream inStream = socket.getInputStream();
         while ((len = inStream.read(bytes)) != -1) {

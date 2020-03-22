@@ -33,6 +33,7 @@ public class TCPServerUpload {
         }
 
         // 告知客户端我收到了
+        socket.getOutputStream().write("我是服务器，我收到你的文件了".getBytes());
 
         // 关闭
         fos.close();

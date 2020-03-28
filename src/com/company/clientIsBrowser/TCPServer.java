@@ -1,4 +1,7 @@
 package com.company.clientIsBrowser;
+/**
+ * 当 client 为 browser 时
+ */
 
 import java.io.*;
 import java.net.ServerSocket;

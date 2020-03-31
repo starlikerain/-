@@ -1,10 +1,6 @@
 package com.company.lambda;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 /**
  * 可以用 lambda 的特性，做性能优化
@@ -12,24 +8,20 @@ import java.util.function.Supplier;
  */
 
 public class main {
-    public static void consumer(String[] names, Consumer<String> consumer1, Consumer<String> consumer2) {
-        for (String name : names) {
-            consumer1.andThen(consumer2).accept(name);
-        }
+    public static void chage(String s, Function<String, Integer> fun){
+        Integer in = fun.apply(s);
+        System.out.println(in);
     }
 
     public static void main(String[] args) {
-        String[] names = {"迪丽热巴,女","段,女","哈撒给,男"};
+        String s = "1234";
 
-        consumer(names,
-                (name) -> {
-                    String[] nameAndSex = name.split(",");
-                    System.out.print("名称是:"+ nameAndSex[0]);
-                },
-                (name) -> {
-                    String[] nameAndSex = name.split(",");
-                    System.out.println("性别是:"+ nameAndSex[1]);
-                }
-                );
+        chage(s, new Function<String, Integer>() {
+            @Override
+            public Integer apply(String s) {
+                return Integer.parseInt(s);
+            }
+        });
+
     }
 }

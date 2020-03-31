@@ -1,6 +1,9 @@
 package com.company.lambda;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * 可以用 lambda 的特性，做性能优化
@@ -8,20 +11,21 @@ import java.util.function.Function;
  */
 
 public class main {
-    public static void chage(String s, Function<String, Integer> fun){
-        Integer in = fun.apply(s);
-        System.out.println(in);
-    }
+
 
     public static void main(String[] args) {
-        String s = "1234";
+        List<String> list = new ArrayList<>();
 
-        chage(s, new Function<String, Integer>() {
-            @Override
-            public Integer apply(String s) {
-                return Integer.parseInt(s);
-            }
-        });
+        list.add("卧槽1");
+        list.add("别人的卧槽2");
+        list.add("鸭的卧槽3");
+        list.add("卧槽4");
+
+
+        list.stream()
+                .filter((s) -> s.startsWith("卧"))
+                .filter(s -> s.length() == 3)
+                .forEach(System.out::println);
 
     }
 }

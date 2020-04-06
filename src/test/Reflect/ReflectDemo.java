@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 public class ReflectDemo {
     public static void main(String[] args) throws Exception {
 
-        Class personClass = Person.class;
+        Class<Person> personClass = Person.class;
         Person wocao = new Person("卧槽", 18);
         Field a = personClass.getField("a");
 

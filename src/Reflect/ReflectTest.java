@@ -1,10 +1,15 @@
 package Reflect;
 
+/*
+ * 不改变改类的任何方法，可以创建任意类对象，可以执行任意方法
+ */
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
+@SuppressWarnings("all")
 public class ReflectTest {
     public static void main(String[] args) throws Exception {
         // 加载配置文件，创建 Properties 对象
@@ -30,5 +35,9 @@ public class ReflectTest {
 
         method.invoke(myClassInstance);
 
+    }
+
+    public void show(){
+        System.out.println("show function");
     }
 }

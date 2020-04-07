@@ -9,4 +9,9 @@ public class mainClass {
 
 
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
